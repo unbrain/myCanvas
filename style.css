@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#page {
+    background-color: #2a0;
+    display: block;
+}
+
+.tool {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.tool > #pen {
+    display: none;
+}
+
+.tool.x > #pen{
+  display: inline-block;
+}
+.tool.x > #rubber{
+  display: none
+}
