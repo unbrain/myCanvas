@@ -4,9 +4,8 @@ var ctx = canvas.getContext('2d')
 var using = false
 var isRubber = false
 var lastPoint, newPoint
-var radius = 3
+var radius = 2
 var color = 'black'
-var lineWidth = 2 * radius
 
 autoCanvasSize()
 listenToButton()
@@ -23,7 +22,7 @@ function listenToUser() {
                 y: y,
             }
             if (isRubber) {
-                ctx.clearRect(x - radius, y - radius, 3 * radius, 3 * radius)
+                ctx.clearRect(x - radius, y - radius, 4 * radius, 4 * radius)
             } else {
                 drawCircle(x, y, radius, color)
             }
@@ -37,10 +36,10 @@ function listenToUser() {
             }
             if (using) {
                 if (isRubber) {
-                    ctx.clearRect(x - radius, y - radius, lineWidth, lineWidth)
+                    ctx.clearRect(x - radius, y - radius, 4 * radius, 4 * radius)
                 } else {
                     drawCircle(x, y, radius, color)
-                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y, color, lineWidth)
+                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y, color, radius)
                     lastPoint = newPoint
                 }
 
@@ -59,7 +58,7 @@ function listenToUser() {
                 y: y,
             }
             if (isRubber) {
-                ctx.clearRect(x - radius, y - radius, 3 * radius, 3 * radius)
+                ctx.clearRect(x - radius, y - radius, 4 * radius, 4 * radius)
             } else {
                 drawCircle(x, y, radius, color)
             }
@@ -74,10 +73,10 @@ function listenToUser() {
             }
             if (using) {
                 if (isRubber) {
-                    ctx.clearRect(x - radius, y - radius, lineWidth, lineWidth)
+                    ctx.clearRect(x - radius, y - radius, 4 * radius, 4 * radius)
                 } else {
                     drawCircle(x, y, radius, color)
-                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y, color, lineWidth)
+                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y, color, radius)
                     lastPoint = newPoint
                 }
 
@@ -91,11 +90,11 @@ function listenToUser() {
     
 }
 
-function drawLine(x1, y1, x2, y2, color, lineWidth) {
+function drawLine(x1, y1, x2, y2, color, radius) {
     ctx.beginPath();
     ctx.strokeStyle = color
     ctx.moveTo(x1, y1) // 起点
-    ctx.lineWidth = lineWidth
+    ctx.lineWidth = 2 * radius
     ctx.lineTo(x2, y2) // 终点
     ctx.stroke()
     ctx.closePath()
@@ -137,6 +136,16 @@ function listenToButton() {
         rubber.classList.remove('active')
     }
 
+    clear.onclick = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+    }
+
+    download.onclick = function () {
+        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  
+        // here is the most important part because if you dont replace you will get a DOM 18 exception.
+        window.location.href = image;
+    }
+
     red.onclick = function () {
         red.classList.remove('active')
         green.classList.remove('active')
@@ -169,5 +178,26 @@ function listenToButton() {
         black.classList.remove('active')
         color = 'black'
         black.classList.add('active')
+    }
+    min.onclick = function () {
+        min.classList.remove('active')
+        middle.classList.remove('active')
+        max.classList.remove('active')
+        radius = 1
+        min.classList.add('active')
+    }
+    middle.onclick = function () {
+        min.classList.remove('active')
+        middle.classList.remove('active')
+        max.classList.remove('active')
+        radius = 2
+        middle.classList.add('active')
+    }
+    max.onclick = function () {
+        min.classList.remove('active')
+        middle.classList.remove('active')
+        max.classList.remove('active')
+        radius = 4
+        max.classList.add('active')
     }
 }

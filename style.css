@@ -74,3 +74,33 @@ ol {
 .color li.active {
     transform: scale(1.2)
 }
+
+.size {
+    transition: all 0.3s;        
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+}
+
+.size > li {
+    width: 40px;
+    margin: 20px 0;
+    background-color: #000;
+    border-bottom: 2px solid transparent; 
+}
+
+.size .min{
+    height: 2px;
+}
+
+.size .middle{
+    height: 4px;
+}
+
+.size .max{
+    height: 8px;
+}
+
+.size li.active{
+    border-bottom: 2px solid red; 
+}
