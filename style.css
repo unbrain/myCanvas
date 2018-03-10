@@ -3,24 +3,74 @@
     padding: 0;
 }
 
+body {
+    overflow: hidden;
+}
+
+.icon {
+    width: 2.5em; height: 2.5em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 #page {
-    background-color: #2a0;
     display: block;
 }
 
 .tool {
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
+    padding: 10px;
 }
 
-.tool > #pen {
-    display: none;
+.tool svg {
+   transition: all 0.3s;
+   margin: 0 10px;
 }
 
-.tool.x > #pen{
-  display: inline-block;
+.tool svg.active {
+    fill: #2a4;
+    transform: scale(1.2)
 }
-.tool.x > #rubber{
-  display: none
+
+ol {
+    list-style: none;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.black {
+    background-color: black;
+}
+
+.color {
+    transition: all 0.3s;        
+    position: fixed;
+    top: 70px;
+    left: 20px;
+}
+
+.color > li {
+    width: 30px;
+    height: 30px;
+    margin: 10px 0px;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s;
+}
+
+.color li.active {
+    transform: scale(1.2)
 }
